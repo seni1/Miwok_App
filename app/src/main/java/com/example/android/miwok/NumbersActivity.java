@@ -1,32 +1,46 @@
 package com.example.android.miwok;
 
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
+
+    //Create a global variable mediaPlayer
+    public MediaPlayer mMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
 
+        /** This a good place to initialize our MediaPlayer.
+         */
+
+
+
         //Create an ArrayList of words
-        ArrayList <Word> words = new ArrayList<Word>();
+        //!!!We'll need to add the word "final" in front of the declaration.
+        // And that way you can reference the words arraylist within the onItemClick method!!!
+        final ArrayList <Word> words = new ArrayList<>();
 
         //words.add(0, "one", "lutti");
-        words.add(new Word("one", "lutti", R.drawable.number_one));
-        words.add(new Word("two", "otiiko", R.drawable.number_two));
-        words.add(new Word("three", "tolookosu", R.drawable.number_three));
-        words.add(new Word("four", "oyyisa", R.drawable.number_four));
-        words.add(new Word("five", "massokka", R.drawable.number_five));
-        words.add(new Word("six", "temmokka", R.drawable.number_six));
-        words.add(new Word("seven", "kenekaku", R.drawable.number_seven));
-        words.add(new Word("eight", "kawinta", R.drawable.number_eight));
-        words.add(new Word("nine", "wo'e", R.drawable.number_nine));
-        words.add(new Word("ten", "na'aacha", R.drawable.number_ten));
+        words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
+        words.add(new Word("two", "otiiko", R.drawable.number_two, R.raw.number_two));
+        words.add(new Word("three", "tolookosu", R.drawable.number_three, R.raw.number_three));
+        words.add(new Word("four", "oyyisa", R.drawable.number_four, R.raw.number_four));
+        words.add(new Word("five", "massokka", R.drawable.number_five, R.raw.number_five));
+        words.add(new Word("six", "temmokka", R.drawable.number_six, R.raw.number_six));
+        words.add(new Word("seven", "kenekaku", R.drawable.number_seven, R.raw.number_seven));
+        words.add(new Word("eight", "kawinta", R.drawable.number_eight, R.raw.number_eight));
+        words.add(new Word("nine", "wo'e", R.drawable.number_nine, R.raw.number_nine));
+        words.add(new Word("ten", "na'aacha", R.drawable.number_ten, R.raw.number_ten));
 
 
         // Find th root view of the whole layout
@@ -82,6 +96,27 @@ public class NumbersActivity extends AppCompatActivity {
         // Do this by calling the setAdapter method on the {@link ListView} object and pass in
         // 1 argument, which is the {@link ArrayAdapter} with the variable name: "adapter".
         listView.setAdapter(adapter);
+
+
+        /** We start at: listView.setAdapter, because this is where we bind our word adapter to our list view.
+         * So it will be a good place for us to configure our onClickListener.
+         */
+
+        //So we use a ListView object and call a setOnClickListener method on it.
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                //So from the onItemClick method position parameter, I can check the words array list
+                //to get the word that was clicked on.
+                Word word = words.get(position);
+
+                //Initialize the MediaPlayer (!use correct autofill!)
+                //Modify for the word to get the correct AudioResourceId
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getmSoundResourceId());
+                //Start the mediaPlayer
+                mMediaPlayer.start();
+            }
+        });
 
     }
 }

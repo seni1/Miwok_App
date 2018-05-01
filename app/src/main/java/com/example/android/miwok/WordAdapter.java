@@ -2,6 +2,7 @@ package com.example.android.miwok;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,6 +89,8 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
         //Find the ImageView in the list_item.xml layout with the ID miwok_image
         ImageView wordImageView = listItemView.findViewById(R.id.miwok_image);
+
+        Log.v("my_tag", "Images present is: "+currentWord.hasImage());
 
         if (currentWord.hasImage()) {
             //Set the ImageView to the image resource specified in the current Word
