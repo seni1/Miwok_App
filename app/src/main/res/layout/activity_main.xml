@@ -13,13 +13,14 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout
+<android.support.v7.widget.RecyclerView
+    android:id="@+id/rv_miwok"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/tan_background"
-    android:orientation="vertical"
+    android:scrollbars="vertical"
     tools:context="com.example.android.miwok.MainActivity">
 
     <TextView
@@ -46,4 +47,4 @@
         android:background="@color/category_phrases"
         android:text="@string/category_phrases" />
 
-</LinearLayout>
+</android.support.v7.widget.RecyclerView>

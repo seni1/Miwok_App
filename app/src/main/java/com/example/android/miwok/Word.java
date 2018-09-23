@@ -57,6 +57,7 @@ public class Word {
         //This is to initialize the global variables ("m" for initialisation purposes)
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
+        //Added the imageResourceId
         mImageResourceId = imageResourceId;
         //Added soundResourceID
         mSoundResourceId = soundResourceID;
